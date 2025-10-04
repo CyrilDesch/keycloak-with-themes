@@ -27,8 +27,8 @@ for theme_dir in keycloakify-theme-*; do
         
         # Move the built JAR to a common location
         if [ -d "dist_keycloak" ]; then
-            mkdir -p ./built-themes
-            cp dist_keycloak/*.jar ./built-themes/
+            mkdir -p ../built-themes
+            cp dist_keycloak/*.jar ../built-themes/
             echo "  ✅ Theme $theme_dir built successfully"
         else
             echo "  ⚠️  Warning: No dist_keycloak directory found for $theme_dir"
