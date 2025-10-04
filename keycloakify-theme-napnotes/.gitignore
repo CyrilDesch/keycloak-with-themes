@@ -50,6 +50,8 @@ jspm_packages
 
 .DS_Store
 
+/built-themes
+
 /dist
 
 /dist_keycloak

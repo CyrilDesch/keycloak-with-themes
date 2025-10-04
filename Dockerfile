@@ -1,14 +1,15 @@
-# Stage 1: Build the Keycloakify theme
+# Stage 1: Build all Keycloakify themes
 FROM node:20-alpine AS theme-builder
 
 WORKDIR /app
 
-COPY keycloakify-starter/package.json keycloakify-starter/yarn.lock ./
-RUN yarn install --frozen-lockfile
-COPY keycloakify-starter/ ./
-RUN yarn build-keycloak-theme
+COPY keycloakify-theme-*/ ./
+COPY build-all-themes.sh ./
 
-# Stage 2: Build Keycloak with custom theme
+RUN chmod +x build-all-themes.sh
+RUN ./build-all-themes.sh
+
+# Stage 2: Build Keycloak with custom themes
 FROM quay.io/keycloak/keycloak:latest AS builder
 
 ENV KC_HEALTH_ENABLED=true
@@ -16,7 +17,7 @@ ENV KC_METRICS_ENABLED=true
 
 WORKDIR /opt/keycloak
 
-COPY --from=theme-builder --chown=keycloak:keycloak --chmod=644 /app/dist_keycloak/*.jar /opt/keycloak/providers/
+COPY --from=theme-builder --chown=keycloak:keycloak --chmod=644 /app/built-themes/*.jar /opt/keycloak/providers/
 RUN touch -m --date=@1743465600 /opt/keycloak/providers/*
 
 RUN /opt/keycloak/bin/kc.sh build

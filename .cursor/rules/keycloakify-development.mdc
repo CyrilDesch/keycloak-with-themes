@@ -1,0 +1,80 @@
+---
+globs: keycloakify-theme-*/**/*
+---
+
+# Keycloakify Theme Development Guidelines
+
+## About Keycloakify
+
+Keycloakify is a framework for creating custom Keycloak themes using React and TypeScript. It allows you to:
+
+- Customize login, registration, and account management pages
+- Use modern React development practices
+- Maintain type safety with TypeScript
+- Test components in isolation with Storybook
+
+## Theme Structure
+
+Each `keycloakify-theme-*` folder contains:
+
+```
+keycloakify-theme-*/
+├── src/
+│   ├── login/              # Login theme implementation
+│   │   ├── pages/          # Individual page components
+│   │   ├── KcContext.ts    # Keycloak context types
+│   │   ├── KcPage.tsx      # Main page router
+│   │   ├── KcPageStory.tsx # Storybook stories
+│   │   ├── i18n.ts         # Internationalization
+│   │   └── main.css        # Theme styles
+│   ├── kc.gen.tsx          # Generated Keycloakify code
+│   └── main.tsx            # Entry point
+├── public/                 # Static assets
+├── package.json            # Dependencies and scripts
+├── tsconfig.json           # TypeScript config
+├── eslint.config.js        # ESLint config
+└── vite.config.ts          # Vite config
+```
+
+## Development Workflow
+
+1. **Start Development Server**
+
+   ```bash
+   cd keycloakify-theme-*/ && npm run dev
+   ```
+
+2. **Test with Storybook**
+
+   ```bash
+   cd keycloakify-theme-*/ && npm run storybook
+   ```
+
+3. **Build for Production**
+   ```bash
+   cd keycloakify-theme-*/ && npm run build-keycloak-theme
+   ```
+
+## Key Components
+
+- **KcContext**: Contains all Keycloak-provided data (user info, realm config, etc.)
+- **KcPage**: Main router that renders the appropriate page based on context
+- **Pages**: Individual components for each Keycloak page (Login, Register, Error, etc.)
+
+## Best Practices
+
+1. Always use TypeScript for type safety
+2. Leverage the `KcContext` type for accessing Keycloak data
+3. Test components in Storybook before building the theme
+4. Keep custom CSS organized in theme-specific files
+5. Use React hooks and modern React patterns
+6. Follow the existing code structure for consistency
+
+## Multiple Themes
+
+The project is designed to support multiple Keycloakify themes:
+
+- Each theme is independent with its own dependencies
+- Themes follow the naming pattern `keycloakify-theme-<name>`
+- Shared patterns and standards apply across all themes
+- Each theme can be built and deployed separately

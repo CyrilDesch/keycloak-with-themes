@@ -1,0 +1,62 @@
+---
+globs: keycloakify-theme-*/src/**/*.ts,keycloakify-theme-*/src/**/*.tsx
+---
+
+# Keycloakify Code Quality Standards
+
+## Mandatory Quality Checks
+
+**CRITICAL**: Whenever you modify TypeScript or React code in any Keycloakify theme folder, you **MUST** run the following checks before completing your work:
+
+1. **TypeScript Compilation Check**
+
+   ```bash
+   cd keycloakify-theme-*/ && npx tsc --noEmit
+   ```
+
+   - Ensures no TypeScript compilation errors
+   - Validates type safety across the codebase
+   - Must pass with zero errors
+
+2. **ESLint Check**
+   ```bash
+   cd keycloakify-theme-*/ && npx eslint . --max-warnings 0
+   ```
+   - Enforces code quality rules
+   - Checks React, TypeScript, and React Hooks best practices
+   - Must pass with zero warnings or errors
+
+## Workflow
+
+1. Make code changes
+2. Run `tsc --noEmit` from the theme directory
+3. Run `eslint . --max-warnings 0` from the theme directory
+4. Fix any errors or warnings
+5. Only complete the task when both checks pass
+
+## ESLint Configuration
+
+The project uses:
+
+- TypeScript ESLint recommended rules
+- React recommended rules
+- React Hooks rules
+- React Refresh rules
+- Storybook rules
+- Prettier integration (no conflicting formatting rules)
+
+## TypeScript Configuration
+
+Strict mode is enabled with:
+
+- `strict: true`
+- `noUnusedLocals: true`
+- `noUnusedParameters: true`
+- `noFallthroughCasesInSwitch: true`
+
+## Notes
+
+- Never bypass these checks to save time
+- If checks fail, fix the issues rather than disabling rules
+- This applies to ALL keycloakify theme folders (current and future)
+- The theme folder pattern is `keycloakify-theme-*/` to support multiple themes

@@ -1,0 +1,42 @@
+---
+alwaysApply: true
+---
+
+# Keycloak Theme Project Structure
+
+This is a professional Keycloak customization project using Keycloakify to create custom authentication themes.
+
+## Project Organization
+
+- Root directory contains the main [Dockerfile](mdc:Dockerfile) for Keycloak deployment
+- Theme directories follow the pattern `keycloakify-theme-*` (e.g., [keycloakify-theme-napnotes](mdc:keycloakify-theme-napnotes))
+- Each theme is a self-contained React/TypeScript application with its own dependencies
+- Multiple theme folders may exist in the future following the same structure
+
+## Key Files in Each Theme
+
+- [package.json](mdc:keycloakify-theme-napnotes/package.json): Dependencies and build scripts
+- [tsconfig.json](mdc:keycloakify-theme-napnotes/tsconfig.json): TypeScript configuration with strict mode enabled
+- [eslint.config.js](mdc:keycloakify-theme-napnotes/eslint.config.js): ESLint configuration for React/TypeScript
+- [vite.config.ts](mdc:keycloakify-theme-napnotes/vite.config.ts): Build configuration
+- `src/login/`: Login theme pages and components
+- `src/kc.gen.tsx`: Generated Keycloakify types
+
+## Code Standards
+
+This is a **professional project with clean code standards**. All code must adhere to:
+
+- TypeScript strict mode (enabled in tsconfig.json)
+- ESLint rules for React, TypeScript, and React Hooks
+- Prettier formatting conventions
+- No unused variables or parameters
+- Proper type safety throughout
+
+## Build Process
+
+Each theme includes these npm scripts:
+
+- `dev`: Development server with hot reload
+- `build`: TypeScript compilation + Vite build
+- `build-keycloak-theme`: Full Keycloak theme build using Keycloakify
+- `format`: Prettier code formatting
