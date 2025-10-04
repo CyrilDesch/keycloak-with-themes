@@ -1,0 +1,10 @@
+keycloakify-starter/node_modules
+keycloakify-starter/dist
+keycloakify-starter/dist_keycloak
+keycloakify-starter/.vite
+keycloakify-starter/storybook-static
+.git
+.gitignore
+*.md
+.DS_Store
+
