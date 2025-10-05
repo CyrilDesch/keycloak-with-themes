@@ -115,10 +115,6 @@ The project includes a multi-stage Dockerfile that:
 2. **Integrates with Keycloak** using Maven
 3. **Creates a production image** with custom theme
 
-```bash
-docker build -t keycloak-custom .
-```
-
 ### Running with Docker
 
 ```bash

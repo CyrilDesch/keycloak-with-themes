@@ -237,7 +237,7 @@ select,
     width: 100%;
     padding: 22px 16px;
     font-family: "Geist", sans-serif;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.5;
     color: var(--text-primary);
     background: var(--card-background);
