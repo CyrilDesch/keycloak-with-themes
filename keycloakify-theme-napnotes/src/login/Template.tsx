@@ -6,6 +6,7 @@ import { useSetClassName } from "keycloakify/tools/useSetClassName";
 import { useInitialize } from "keycloakify/login/Template.useInitialize";
 import type { KcContext } from "./KcContext";
 import type { I18n } from "./i18n";
+import logoPngUrl from "../../public/logo.png";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -59,7 +60,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                 <div className="kc-form-container">
                     {/* Logo */}
                     <div className="kc-logo">
-                        <img src="/logo.png" alt="NapNotes" />
+                        <img src={logoPngUrl} alt="NapNotes" />
                     </div>
 
                     {/* Header */}
