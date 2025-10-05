@@ -1,8 +1,8 @@
-keycloakify-starter/node_modules
-keycloakify-starter/dist
-keycloakify-starter/dist_keycloak
-keycloakify-starter/.vite
-keycloakify-starter/storybook-static
+node_modules
+dist
+dist_keycloak
+.vite
+storybook-static
 .git
 .gitignore
 *.md

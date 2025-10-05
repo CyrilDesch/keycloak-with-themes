@@ -40,3 +40,8 @@ Each theme includes these npm scripts:
 - `build`: TypeScript compilation + Vite build
 - `build-keycloak-theme`: Full Keycloak theme build using Keycloakify
 - `format`: Prettier code formatting
+
+## Requirements
+
+- You never have to run a build or start dev or storybook. You can just use linters.
+- You never make summary documents of you work.

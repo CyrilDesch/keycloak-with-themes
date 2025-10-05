@@ -9,9 +9,9 @@
 
 import { lazy, Suspense, type ReactNode } from "react";
 
-export type ThemeName = "keycloakify-starter";
+export type ThemeName = "keycloakify-theme-napnotes";
 
-export const themeNames: ThemeName[] = ["keycloakify-starter"];
+export const themeNames: ThemeName[] = ["keycloakify-theme-napnotes"];
 
 export type KcEnvName = never;
 

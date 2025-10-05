@@ -9,6 +9,10 @@ const kcContextExtension: KcContextExtension = {
     themeName: themeNames[0],
     properties: {
         ...kcEnvDefaults
+    },
+    social: {
+        displayInfo: false,
+        providers: []
     }
 };
 const kcContextExtensionPerPage: KcContextExtensionPerPage = {};
