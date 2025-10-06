@@ -95,7 +95,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     {kcContext.social?.providers?.length > 0 && (
                         <>
                             <div className="kc-divider">
-                                <span>OR</span>
+                                <span>OR WITH</span>
                             </div>
                             <div className="kc-social-section kc-social-buttons-only">{socialProvidersNode}</div>
                         </>
