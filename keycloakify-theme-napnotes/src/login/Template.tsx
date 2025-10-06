@@ -92,7 +92,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     <div className="kc-form-content">{children}</div>
 
                     {/* Social Providers */}
-                    {kcContext.social?.providers?.length > 0 && (
+                    {kcContext.social?.providers?.length > 0 && socialProvidersNode !== null && (
                         <>
                             <div className="kc-divider">
                                 <span>OR WITH</span>
