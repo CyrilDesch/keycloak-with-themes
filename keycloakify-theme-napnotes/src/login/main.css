@@ -975,3 +975,8 @@ span[data-kc-msg="doForgotPassword"] {
 .kcFormSocialAccountListButtonClass.pf-c-button::after {
     display: none;
 }
+
+.pf-c-form-control[aria-invalid="true"] {
+    background: none;
+    padding-bottom: 20px;
+}
