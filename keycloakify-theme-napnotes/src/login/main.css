@@ -113,6 +113,98 @@ body {
 .kc-form-container {
     width: 100%;
     max-width: 440px;
+    position: relative;
+}
+
+/* Language Selector */
+.kc-language-selector {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--spacing-xl);
+}
+
+.kc-language-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--card-background);
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: "Geist", sans-serif;
+}
+
+.kc-language-button:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+}
+
+.kc-language-chevron {
+    transition: transform 0.2s ease;
+}
+
+.kc-language-chevron-open {
+    transform: rotate(180deg);
+}
+
+.kc-language-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 180px;
+    background: var(--card-background);
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    animation: kc-dropdown-fade-in 0.15s ease;
+}
+
+@keyframes kc-dropdown-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.kc-language-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+.kc-language-option:hover {
+    background: var(--background);
+    color: var(--text-primary);
+}
+
+.kc-language-option-active {
+    background: var(--background);
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.kc-language-option svg {
+    color: var(--primary-color);
 }
 
 /* Logo */
@@ -213,7 +305,7 @@ label,
     font-size: 0.85rem;
     font-weight: 500;
     color: var(--text-secondary);
-    display: block;
+    display: inline-block;
     margin-bottom: 4px;
 }
 
@@ -222,8 +314,11 @@ label,
     margin-top: 16px;
 }
 
-label .required {
+label .required,
+.pf-c-form__label .required {
     color: var(--error-color);
+    margin-left: 3px;
+    display: inline;
 }
 
 /* Input Fields */
@@ -574,6 +669,47 @@ a:hover {
     height: 20px;
 }
 
+/* Custom Google logo styling - target the Font Awesome icon */
+#kc-social-providers a[href*="google"] .fa-google,
+#kc-social-providers button[href*="google"] .fa-google,
+#kc-social-providers a[id*="google"] .fa-google,
+#kc-social-providers button[id*="google"] .fa-google {
+    display: none !important;
+}
+
+/* Add custom Google logo using pseudo-element on the button */
+#kc-social-providers a[href*="google"]::before,
+#kc-social-providers button[href*="google"]::before,
+#kc-social-providers a[id*="google"]::before,
+#kc-social-providers button[id*="google"]::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("/google-logo.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* Alternative approach - target the i element directly */
+#kc-social-providers a[href*="google"] i.fa-google,
+#kc-social-providers button[href*="google"] i.fa-google,
+#kc-social-providers a[id*="google"] i.fa-google,
+#kc-social-providers button[id*="google"] i.fa-google {
+    display: none !important;
+}
+
+/* Override any grayscale filters on Google buttons */
+#kc-social-providers a[href*="google"],
+#kc-social-providers button[href*="google"],
+#kc-social-providers a[id*="google"],
+#kc-social-providers button[id*="google"] {
+    filter: none !important;
+}
+
 .kc-info,
 #kc-registration {
     display: flex;
@@ -721,6 +857,16 @@ a:hover {
     .kc-page-heading,
     .kc-header span {
         font-size: 28px;
+    }
+
+    .kc-language-button span {
+        display: none;
+    }
+
+    .kc-language-button {
+        padding: 10px;
+        min-width: 44px;
+        justify-content: center;
     }
 }
 

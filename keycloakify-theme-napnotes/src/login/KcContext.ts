@@ -10,6 +10,9 @@ export type KcContextExtension = {
         providers: {
             loginUrl: string;
             alias: string;
+            providerId: string;
+            displayName: string;
+            iconClasses: string;
         }[];
     };
     // NOTE: Here you can declare more properties to extend the KcContext

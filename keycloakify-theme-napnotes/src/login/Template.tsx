@@ -6,13 +6,13 @@ import { useSetClassName } from "keycloakify/tools/useSetClassName";
 import { useInitialize } from "keycloakify/login/Template.useInitialize";
 import type { KcContext } from "./KcContext";
 import type { I18n } from "./i18n";
-import logoPngUrl from "../../public/logo.png";
+import logoPngUrl from "../assets/logo.png";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
         displayInfo = false,
         displayMessage = true,
-        displayRequiredFields = false,
         headerNode,
         socialProvidersNode = null,
         infoNode = null,
@@ -81,12 +81,12 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                         </div>
                     )}
 
-                    {/* Required Fields Notice */}
-                    {displayRequiredFields && (
+                    {/* Required Fields Notice - Hidden */}
+                    {/* {displayRequiredFields && (
                         <div className="kc-required-notice">
                             <span className="kc-required-asterisk">*</span> {msg("requiredFields")}
                         </div>
-                    )}
+                    )} */}
 
                     {/* Main Content */}
                     <div className="kc-form-content">{children}</div>
@@ -103,6 +103,9 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
                     {/* Info Section */}
                     {displayInfo && <div className="kc-info-section">{infoNode}</div>}
+
+                    {/* Language Selector */}
+                    <LanguageSwitcher kcContext={kcContext} />
                 </div>
             </div>
 

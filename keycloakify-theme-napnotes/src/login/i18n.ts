@@ -3,7 +3,29 @@ import { i18nBuilder } from "keycloakify/login";
 import type { ThemeName } from "../kc.gen";
 
 /** @see: https://docs.keycloakify.dev/features/i18n */
-const { useI18n, ofTypeI18n } = i18nBuilder.withThemeName<ThemeName>().build();
+const { useI18n, ofTypeI18n } = i18nBuilder
+    .withThemeName<ThemeName>()
+    .withCustomTranslations({
+        en: {
+            noAccount: "Don't have an account ?",
+            doRegister: "Sign up",
+            doLogIn: "Login",
+            loginTitle: "NapNotes Authentication",
+            registerTitle: "Sign up for free",
+            backToLogin: "Have an account ?",
+            doSubmit: "Create account"
+        },
+        fr: {
+            noAccount: "Pas de compte ?",
+            doRegister: "S'inscrire",
+            doLogIn: "Se connecter",
+            loginTitle: "Authentification NapNotes",
+            registerTitle: "Inscription gratuite",
+            backToLogin: "Vous avez un compte ?",
+            doSubmit: "Créer un compte"
+        }
+    })
+    .build();
 
 type I18n = typeof ofTypeI18n;
 

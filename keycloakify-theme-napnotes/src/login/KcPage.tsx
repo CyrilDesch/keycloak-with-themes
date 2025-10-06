@@ -4,6 +4,7 @@ import type { KcContext } from "./KcContext";
 import { useI18n } from "./i18n";
 import DefaultPage from "keycloakify/login/DefaultPage";
 import Template from "./Template";
+import Register from "./pages/Register";
 import "./main.css";
 
 const UserProfileFormFields = lazy(
@@ -15,12 +16,34 @@ const doMakeUserConfirmPassword = true;
 export default function KcPage(props: { kcContext: KcContext }) {
     const { kcContext } = props;
 
+    /* 
+    kcContext.locale = {
+        currentLanguageTag: "fr",
+        supported: [
+            { url: "/", label: "English", languageTag: "en" },
+            { url: "/", label: "Français", languageTag: "fr" }
+        ]
+    };
+    */
+
     const { i18n } = useI18n({ kcContext });
 
     return (
         <Suspense>
             {(() => {
                 switch (kcContext.pageId) {
+                    case "register.ftl":
+                        return (
+                            <Register
+                                kcContext={kcContext}
+                                i18n={i18n}
+                                classes={classes}
+                                Template={Template}
+                                doUseDefaultCss={true}
+                                UserProfileFormFields={UserProfileFormFields}
+                                doMakeUserConfirmPassword={doMakeUserConfirmPassword}
+                            />
+                        );
                     default:
                         return (
                             <DefaultPage
