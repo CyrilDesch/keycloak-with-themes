@@ -1,6 +1,28 @@
-# Keycloak Custom Themes
+# Keycloak With Themes
 
 A professional Keycloak customization project using [Keycloakify](https://keycloakify.dev) to create custom authentication themes. This project supports multiple independent themes, each with their own React/TypeScript implementation.
+
+## Environment Variables to set when running the container
+
+```
+KC_HEALTH_ENABLED=true
+KC_METRICS_ENABLED=true
+
+KC_DB=postgres
+KC_DB_URL=jdbc:postgresql://<postgres-container-name-docker>:5432/keycloak
+KC_DB_USERNAME=postgres
+KC_DB_PASSWORD=<postgres-password>
+
+KC_HOSTNAME=https://auth.cyrildeschamps.fr
+KC_HOSTNAME_ADMIN=https://keycloak.cyrildeschamps.fr
+KC_HOSTNAME_STRICT=true
+
+KC_PROXY_HEADERS=xforwarded
+KC_HTTP_ENABLED=true
+
+KC_BOOTSTRAP_ADMIN_USERNAME=admin
+KC_BOOTSTRAP_ADMIN_PASSWORD=<admin-password>
+```
 
 ## 🏗️ Project Structure
 
@@ -117,16 +139,6 @@ The project includes a multi-stage Dockerfile that:
 
 ```bash
 docker build -t keycloak-custom .
-```
-
-### Running with Docker
-
-```bash
-docker run -p 8080:8080 \
-  -e KEYCLOAK_ADMIN=admin \
-  -e KEYCLOAK_ADMIN_PASSWORD=admin \
-  keycloak-custom \
-  start-dev
 ```
 
 Access Keycloak at: http://localhost:8080
