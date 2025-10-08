@@ -8,6 +8,7 @@ import type { KcContext } from "./KcContext";
 import type { I18n } from "./i18n";
 import logoPngUrl from "../assets/logo.png";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import RefreshButton from "../components/RefreshButton";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -78,6 +79,13 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                                     __html: kcSanitize(kcContext.message.summary)
                                 }}
                             />
+                        </div>
+                    )}
+
+                    {/* Refresh Button - Only on email verification page */}
+                    {kcContext.pageId === "login-verify-email.ftl" && (
+                        <div className="kc-refresh-section">
+                            <RefreshButton i18n={i18n} />
                         </div>
                     )}
 

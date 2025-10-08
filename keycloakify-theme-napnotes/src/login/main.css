@@ -980,3 +980,95 @@ span[data-kc-msg="doForgotPassword"] {
     background: none;
     padding-bottom: 20px;
 }
+
+/* Refresh Button Styles */
+.kc-refresh-section {
+    display: flex;
+    justify-content: center;
+    margin: var(--spacing-md) 0;
+}
+
+.kc-refresh-button {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    font-family: inherit;
+}
+
+.kc-refresh-button:hover {
+    background: var(--background);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.kc-refresh-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.kc-refresh-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.kc-refresh-button:disabled:hover {
+    background: transparent;
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+    transform: none;
+    box-shadow: none;
+}
+
+.kc-refresh-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.kc-refresh-icon-spinning {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.kc-refresh-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Mobile responsiveness for refresh button */
+@media (max-width: 768px) {
+    .kc-refresh-section {
+        margin: var(--spacing-sm) 0;
+    }
+
+    .kc-refresh-button {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.8rem;
+    }
+
+    .kc-refresh-icon {
+        width: 14px;
+        height: 14px;
+    }
+}

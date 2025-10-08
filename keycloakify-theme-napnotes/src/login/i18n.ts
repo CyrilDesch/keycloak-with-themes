@@ -13,7 +13,9 @@ const { useI18n, ofTypeI18n } = i18nBuilder
             loginTitle: "NapNotes Authentication",
             registerTitle: "Sign up for free",
             backToLogin: "Have an account ?",
-            doSubmit: "Create account"
+            doSubmit: "Create account",
+            refreshButton: "I have verified",
+            refreshingButton: "Checking..."
         },
         fr: {
             noAccount: "Pas de compte ?",
@@ -22,7 +24,9 @@ const { useI18n, ofTypeI18n } = i18nBuilder
             loginTitle: "Authentification NapNotes",
             registerTitle: "Inscription gratuite",
             backToLogin: "Vous avez un compte ?",
-            doSubmit: "Créer un compte"
+            doSubmit: "Créer un compte",
+            refreshButton: "J'ai vérifié",
+            refreshingButton: "Vérification..."
         }
     })
     .build();
