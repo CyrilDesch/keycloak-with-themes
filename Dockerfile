@@ -7,6 +7,7 @@ WORKDIR /app
 
 # Copy each theme directory explicitly
 COPY keycloakify-theme-napnotes ./keycloakify-theme-napnotes
+COPY keycloakify-theme-musiconnect ./keycloakify-theme-musiconnect
 COPY build-all-themes.sh ./
 
 RUN chmod +x build-all-themes.sh
