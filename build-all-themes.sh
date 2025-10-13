@@ -25,10 +25,18 @@ for theme_dir in keycloakify-theme-*; do
         echo "  🔨 Building theme..."
         npm run build-keycloak-theme
         
-        # Move the built JAR to a common location
+        # Move the built JAR to a common location with theme-specific names
         if [ -d "dist_keycloak" ]; then
             mkdir -p ../built-themes
-            cp dist_keycloak/*.jar ../built-themes/
+            for jar_file in dist_keycloak/*.jar; do
+                if [ -f "$jar_file" ]; then
+                    # Extract the filename without path
+                    filename=$(basename "$jar_file")
+                    # Create theme-specific filename
+                    theme_specific_name="${theme_dir}-${filename}"
+                    cp "$jar_file" "../built-themes/${theme_specific_name}"
+                fi
+            done
             echo "  ✅ Theme $theme_dir built successfully"
         else
             echo "  ⚠️  Warning: No dist_keycloak directory found for $theme_dir"
