@@ -65,18 +65,14 @@ jobs:
           SHORT_SHA=$(git rev-parse --short HEAD)
           IMAGE_TAG="sha-${SHORT_SHA}"
 
-          # We assume 'production' since there's only one env mentioned
           OVERLAY="production"
+          DEPLOY_TAG="deploy-production"
 
           echo "Updating image tag to ${IMAGE_TAG} in k8s/overlays/${OVERLAY}"
 
           cd k8s/overlays/${OVERLAY}
-
-          # Update the image tag
-          # We match the image name defined in k8s/base/deployment.yaml (or the overlay)
-          # Using the registry/image_name format to be safe if it's fully qualified there
+          # We target the base image name used in base/deployment.yaml (keycloak-image)
           kustomize edit set image keycloak-image=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG}
-
           cd ../../..
 
           git add k8s/overlays/${OVERLAY}/kustomization.yaml
@@ -84,5 +80,11 @@ jobs:
           # Commit if there are changes
           if ! git diff --staged --quiet; then
             git commit -m "chore: update ${OVERLAY} image tag to ${IMAGE_TAG} [skip ci]"
-            git push origin HEAD:${{ github.ref_name }}
           fi
+
+          # Tag the commit
+          git tag -f ${DEPLOY_TAG}
+
+          # Push changes and tag
+          git push origin HEAD:${{ github.ref_name }}
+          git push -f origin ${DEPLOY_TAG}
