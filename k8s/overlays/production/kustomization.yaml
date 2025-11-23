@@ -4,9 +4,9 @@ kind: Kustomization
 namespace: keycloak
 
 resources:
-  - ../../base
+- ../../base
 
 images:
-  - name: keycloak-image
-    newName: ghcr.io/cyrildesch/keycloak
-    newTag: latest
+- name: keycloak-image
+  newName: ghcr.io/cyrildesch/keycloak-with-themes
+  newTag: sha-7d51d48
