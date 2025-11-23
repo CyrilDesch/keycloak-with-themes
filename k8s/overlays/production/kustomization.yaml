@@ -9,4 +9,4 @@ resources:
 images:
 - name: keycloak-image
   newName: ghcr.io/cyrildesch/keycloak-with-themes
-  newTag: sha-5c9af6b
+  newTag: sha-e7718a4
