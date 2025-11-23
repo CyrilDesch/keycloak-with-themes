@@ -21,3 +21,29 @@ spec:
                 name: keycloak
                 port:
                   number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak-internal-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.tls.options: kubernetes-dashboard-dashboard-mtls@kubernetescrd
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - keycloak.cyrildeschamps.fr
+      secretName: internal-wildcard-tls
+  rules:
+    - host: keycloak.cyrildeschamps.fr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: keycloak
+                port:
+                  number: 80
