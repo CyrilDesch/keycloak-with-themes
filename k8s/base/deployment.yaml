@@ -18,17 +18,15 @@ spec:
         - name: keycloak
           image: keycloak-image
           args:
-            [
-              "start",
-              "--optimized",
-              "--http-enabled=true",
-              "--hostname-strict=false",
-            ]
+            - "start"
+            - "--optimized"
+            - "--http-enabled=true"
+            - "--hostname-strict=false"
           env:
             - name: KC_HEALTH_ENABLED
-              value: true
+              value: "true"
             - name: KC_METRICS_ENABLED
-              value: true
+              value: "true"
             - name: KC_DB
               value: postgres
             - name: KC_DB_URL
@@ -58,11 +56,11 @@ spec:
             - name: KC_HOSTNAME_ADMIN
               value: http://keycloak.cyrildeschamps.fr
             - name: KC_HOSTNAME_STRICT
-              value: false
+              value: "false"
             - name: KC_PROXY_HEADERS
               value: xforwarded
             - name: KC_HTTP_ENABLED
-              value: true
+              value: "true"
           ports:
             - name: http
               containerPort: 8080
