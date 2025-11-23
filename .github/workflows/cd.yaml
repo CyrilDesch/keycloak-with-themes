@@ -1,0 +1,88 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Downcase IMAGE_NAME
+        run: |
+          echo "IMAGE_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest
+            type=sha,prefix=sha-
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Install Kustomize
+        run: |
+          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+          sudo mv kustomize /usr/local/bin/
+
+      - name: Update Kubernetes manifests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          IMAGE_TAG="sha-${SHORT_SHA}"
+
+          # We assume 'production' since there's only one env mentioned
+          OVERLAY="production"
+
+          echo "Updating image tag to ${IMAGE_TAG} in k8s/overlays/${OVERLAY}"
+
+          cd k8s/overlays/${OVERLAY}
+
+          # Update the image tag
+          # We match the image name defined in k8s/base/deployment.yaml (or the overlay)
+          # Using the registry/image_name format to be safe if it's fully qualified there
+          kustomize edit set image keycloak-image=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG}
+
+          cd ../../..
+
+          git add k8s/overlays/${OVERLAY}/kustomization.yaml
+
+          # Commit if there are changes
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update ${OVERLAY} image tag to ${IMAGE_TAG} [skip ci]"
+            git push origin HEAD:${{ github.ref_name }}
+          fi

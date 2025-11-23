@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: keycloak
+
+resources:
+  - ../../base
+
+images:
+  - name: keycloak-image
+    newName: ghcr.io/cyrildesch/keycloak
+    newTag: latest
