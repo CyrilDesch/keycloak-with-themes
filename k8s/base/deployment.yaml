@@ -52,7 +52,7 @@ spec:
             - name: KC_HOSTNAME
               value: https://auth.cyrildeschamps.fr
             - name: KC_HOSTNAME_ADMIN
-              value: https://keycloak.cyrildeschamps.fr
+              value: http://keycloak.cyrildeschamps.fr
             - name: KC_PROXY_HEADERS
               value: xforwarded
           ports:

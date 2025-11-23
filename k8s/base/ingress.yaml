@@ -4,26 +4,14 @@ metadata:
   name: keycloak-ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   tls:
     - hosts:
         - auth.cyrildeschamps.fr
-        - keycloak.cyrildeschamps.fr
       secretName: keycloak-tls
   rules:
     - host: auth.cyrildeschamps.fr
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: keycloak
-                port:
-                  number: 80
-    - host: keycloak.cyrildeschamps.fr
       http:
         paths:
           - path: /
