@@ -1,0 +1,4 @@
+# Keycloak database backups (contain sensitive data)
+keycloak_backup.sql
+*.sql
+
