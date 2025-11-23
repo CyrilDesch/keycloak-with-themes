@@ -54,7 +54,7 @@ spec:
             - name: KC_HOSTNAME
               value: https://auth.cyrildeschamps.fr
             - name: KC_HOSTNAME_ADMIN
-              value: http://keycloak.cyrildeschamps.fr
+              value: https://keycloak.cyrildeschamps.fr
             - name: KC_HOSTNAME_STRICT
               value: "false"
             - name: KC_PROXY_HEADERS
